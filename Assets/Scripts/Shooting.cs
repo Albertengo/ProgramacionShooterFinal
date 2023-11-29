@@ -8,6 +8,8 @@ namespace disparos
     public class Shooting : MonoBehaviour
     {
         #region variables
+        //se necesita agregar un nuevo code para que el firepoint siga al jugador
+        //ya que parece que el firepoint se queda quieto en su lugar apenas toca con el enemigo.
         //private Vector3 target;
         private Vector2 mouseposition;
         public Transform FirePoint;

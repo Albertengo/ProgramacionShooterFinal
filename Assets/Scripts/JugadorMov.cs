@@ -9,15 +9,9 @@ namespace Jugador
         #region Variables
         public Rigidbody2D rb;
         public float velocidad;
-        [SerializeField] private float SaludMax;
-        private float salud;
         #endregion
 
         #region funciones basicas
-        private void Start()
-        {
-            salud = SaludMax;
-        }
         void Update()
         {
             movimiento();
@@ -31,6 +25,7 @@ namespace Jugador
             float movimientovertical = Input.GetAxis("Vertical") * velocidad * Time.deltaTime;
             transform.Translate(movimientohorizontal, movimientovertical, 0);
         }
+
         #endregion
     }
 }

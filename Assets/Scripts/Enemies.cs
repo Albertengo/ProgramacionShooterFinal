@@ -1,3 +1,5 @@
+using disparos;
+using Jugador;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
@@ -8,13 +10,19 @@ namespace BotsEnemigos
     public class Enemies : MonoBehaviour
     {
         #region variables
+        [Header("ESPECIFICACIONES ENEMIGO")]
         [SerializeField] private string NombreEnemigo;
+        [SerializeField] public int dañoInflingido;
         [SerializeField] private float velocidad;
         [SerializeField] private float SaludMax;
         private float salud;
-
         [SerializeField] private float RangoAtaque;
+
+        [Header("INTERACCION")]
+        public VidaJugador VidaJugador;
         private Transform objetivo;
+        public GameObject[] Drops;
+        public static int Kills;
         #endregion
 
         #region funciones basicas
@@ -24,7 +32,6 @@ namespace BotsEnemigos
             objetivo = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
-        // Update is called once per frame
         void Update()
         {
             Movimiento();
@@ -44,17 +51,27 @@ namespace BotsEnemigos
             salud = salud - 5;
             if (salud <= 0)
             {
-                //this.desaparecer();
                 Destroy(gameObject);
-                //Kills++;
-                //Debug.Log("Enemigos eliminados: " + Kills);
+                Kills++;
+                Vector2 position = transform.position;
+                int dropsIndex = Random.Range(0, Drops.Length);
+                Instantiate(Drops[dropsIndex], position, Quaternion.identity);
+                Debug.Log("Enemigos eliminados: " + Kills);
             }
         }
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D collision) //para cuando es atacado por el jugador
         {
             if (collision.gameObject.CompareTag("Bala"))
             {
                 recibirDaño();
+            }
+        }
+        private void OnCollisionEnter2D(Collision2D collision) //para atacar al jugador
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                VidaJugador.daño(dañoInflingido);
+                Debug.Log("Estoy dañando al jugador ");
             }
         }
         #endregion
