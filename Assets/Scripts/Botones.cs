@@ -1,3 +1,5 @@
+using BotsEnemigos;
+using Jugador;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,19 +12,19 @@ namespace interfaz
         public void Restart()
         {
             SceneManager.LoadScene("SampleScene");
-            //ControlBot.Kills = 0;
-            //ControlJuego.CantidadEnemigos = 0;
+            Enemies.Kills = 0;
+            ControlJuego.CantidadEnemigos = 0;
             Time.timeScale = 1f;
         }
         public void Menu()
         {
-            SceneManager.LoadScene("Menu De Inicio");
+            SceneManager.LoadScene("Menu de Inicio");
         }
         public void PlayButton()
         {
             SceneManager.LoadScene("SampleScene");
-            //ControlBot.Kills = 0;
-            //ControlJuego.CantidadEnemigos = 0;
+            Enemies.Kills = 0;
+            ControlJuego.CantidadEnemigos = 0;
             Time.timeScale = 1f;
         }
         public void QuitGame()

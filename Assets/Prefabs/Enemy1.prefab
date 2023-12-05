@@ -166,6 +166,6 @@ MonoBehaviour:
   velocidad: 3
   SaludMax: 10
   RangoAtaque: 5
+  VidaJugador: {fileID: 5232902095929469126, guid: 42a570ee3d8de2643984f8173e8b6733, type: 3}
   Drops:
   - {fileID: 5266423309207358030, guid: 582e019215188304f922ff5ea1dac5a5, type: 3}
-  VidaJugador: {fileID: 5232902095929469126, guid: 42a570ee3d8de2643984f8173e8b6733, type: 3}

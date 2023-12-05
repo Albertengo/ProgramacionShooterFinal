@@ -12,10 +12,10 @@ namespace BotsEnemigos
         #region variables
         [Header("ESPECIFICACIONES ENEMIGO")]
         [SerializeField] private string NombreEnemigo;
-        [SerializeField] public int dañoInflingido;
+        public float dañoInflingido;
         [SerializeField] private float velocidad;
         [SerializeField] private float SaludMax;
-        private float salud;
+        public float saludEn;
         [SerializeField] private float RangoAtaque;
 
         [Header("INTERACCION")]
@@ -28,7 +28,7 @@ namespace BotsEnemigos
         #region funciones basicas
         void Start()
         {
-            salud = SaludMax;
+            saludEn = SaludMax;
             objetivo = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
@@ -48,14 +48,16 @@ namespace BotsEnemigos
         }
         public void recibirDaño()
         {
-            salud = salud - 5;
-            if (salud <= 0)
+            saludEn = saludEn - 5;
+            if (saludEn <= 0)
             {
                 Destroy(gameObject);
                 Kills++;
-                Vector2 position = transform.position;
-                int dropsIndex = Random.Range(0, Drops.Length);
-                Instantiate(Drops[dropsIndex], position, Quaternion.identity);
+                
+                Vector2 position = transform.position; //chequea la posicion
+                int dropsIndex = Random.Range(0, Drops.Length); //randomiza la loot
+                Instantiate(Drops[dropsIndex], position, Quaternion.identity); //instancia loot a recolectar
+                
                 Debug.Log("Enemigos eliminados: " + Kills);
             }
         }
@@ -68,10 +70,19 @@ namespace BotsEnemigos
         }
         private void OnCollisionEnter2D(Collision2D collision) //para atacar al jugador
         {
+            //if (collision.gameObject.CompareTag("Player"))
+            //{
+            //    VidaJugador.Daño(dañoInflingido);
+            //    Debug.Log("Estoy dañando al jugador -" + dañoInflingido);
+            //}
             if (collision.gameObject.CompareTag("Player"))
             {
-                VidaJugador.daño(dañoInflingido);
-                Debug.Log("Estoy dañando al jugador ");
+                Debug.Log("Player Hit");
+
+                if (VidaJugador != null)
+                {
+                    VidaJugador.Daño(dañoInflingido);
+                }
             }
         }
         #endregion

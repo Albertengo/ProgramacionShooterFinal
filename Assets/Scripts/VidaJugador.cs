@@ -2,44 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using interfaz;
+using BotsEnemigos;
 
 namespace Jugador
 {
     public class VidaJugador : MonoBehaviour
     {
         #region variables
-        [SerializeField] private float SaludMax;
-        private float salud;
+        public float SaludMax = 15;
+        public float Salud;
+        public SliderHealth healthbar;
         [SerializeField] private float HPdropHealing; //lo que cure el objeto de curacion, valga la redundancia
-
+       // public Enemies dañoInflingido;
+       // public Win_Lose screenL;
         #endregion
 
         #region funciones basicas
         void Start()
         {
-            salud = SaludMax;
-            Debug.Log("Nivel de vida: " + salud);
+            Salud = SaludMax;
+            //healthbar.SetMaxHealth(SaludMax);
+            healthbar.startHealthBar(Salud);
+            Debug.Log("Nivel de vida: " + Salud);
         }
 
         #endregion
 
         #region code
 
-        public void OnCollisionEnter2D(Collision2D collision) //funcion collision para que cuando colisiones con enemigo, tome daño.
-        {
-            if (collision.gameObject.CompareTag("Enemy"))
-            {
-                Debug.Log("jugador: estoy recibiendo daño");
-            }
-        }
+        //public void OnCollisionEnter2D(Collision2D collision) //funcion collision para que cuando colisiones con enemigo, tome daño.
+        //{
+        //    if (collision.gameObject.CompareTag("Enemy"))
+        //    {
+        //        Daño(dañoInflingido);
+        //        Debug.Log("jugador: estoy recibiendo daño un daño de: " + dañoInflingido);
+        //    }
+        //}
 
-        public void daño(int dañoRecibido) //funcion con la mecanica de tomar daño.
+        public void Daño(float dañoRecibido) //funcion con la mecanica de tomar daño.
         {
-            salud = salud - dañoRecibido;
-            if (salud <= 0)
+            Debug.Log("Antes - Salud: " + Salud + ", Daño Recibido: " + dañoRecibido);
+            Salud -= dañoRecibido;
+            Debug.Log("Después - Salud: " + Salud);
+            //Salud = Mathf.Max(0, Salud - dañoRecibido);
+            // salud -= dañoRecibido; //el problema esta en este calculo, pasa de 15 de salud a -27, -30 ????
+            Debug.Log("daño recibido: " + dañoRecibido);
+            Debug.Log("salud: " + Salud);
+            healthbar.SetHealth(Salud);
+            if (Salud <= 0)
             {
                 //this.desaparecer();
-                Debug.Log("Moriste"); //hacer desp una linea que sea para activar la pantalla de muerte acá
+                Debug.Log("Moriste. Nivel de salud: " + Salud); //hacer desp una linea que sea para activar la pantalla de muerte acá
+               // screenL.ActiveScreen();
             }
         }
 
@@ -47,8 +62,8 @@ namespace Jugador
         {
             if (collision.gameObject.CompareTag("Coleccionable"))
             {
-                salud += HPdropHealing;
-                Debug.Log("El nuevo nivel de vida es:" + salud);
+                Salud += HPdropHealing;
+                Debug.Log("El nuevo nivel de vida es:" + Salud);
                 collision.gameObject.SetActive(false);
             }
 

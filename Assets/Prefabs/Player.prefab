@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d340d2ccc9e884eaefae3f2349303b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 2630858075255874634}
+  rb: {fileID: 0}
   velocidad: 5
 --- !u!114 &7300886680148727633
 MonoBehaviour:
@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35ad78922626844a94989a053ce7ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CrossHair: {fileID: 0}
   FirePoint: {fileID: 1032480941011322027}
   BalaPrefab: {fileID: 1438925029316229665, guid: 46a7425f71eb92d40a5fed5effaec4df, type: 3}
   rbFirePoint: {fileID: 1590253910198848915}
@@ -79,6 +80,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SaludMax: 15
+  healthbar: {fileID: 7917064986138285791, guid: 1a7800828c0f2d04b82fad9bc80abf37, type: 3}
+  HPdropHealing: 10
+  screenL: {fileID: 2517183524478898018, guid: 4e1b22282c68357469398d10bc6ab7eb, type: 3}
 --- !u!61 &6238792497063013860
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -244,10 +248,5 @@ PrefabInstance:
 --- !u!4 &1138789221063815792 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6772508577320535273, guid: c20dfe838bbd2f44a8e9557ae1f8b018, type: 3}
-  m_PrefabInstance: {fileID: 5922517632396261017}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &2630858075255874634 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 8553370416048984787, guid: c20dfe838bbd2f44a8e9557ae1f8b018, type: 3}
   m_PrefabInstance: {fileID: 5922517632396261017}
   m_PrefabAsset: {fileID: 0}

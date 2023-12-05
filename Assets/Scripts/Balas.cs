@@ -18,6 +18,7 @@ namespace disparos
         void Start()
         {
             rbBala.velocity = transform.right * velocidad;
+            Destroy(gameObject, tiempo);
         }
 
         #endregion

@@ -7,9 +7,6 @@ public class ControlJuego : MonoBehaviour
 {
     #region Variables
     public GameObject jugador;
-    //public GameObject EnemyComun;
-    //public GameObject EnemyRapido;
-    //public GameObject EnemyFuerte;
     public GameObject[] enemyPrefabs; 
     
     public Win_Lose screenW;
@@ -17,7 +14,7 @@ public class ControlJuego : MonoBehaviour
     public static float tiempoRestante;
     private int xPos;
     private int zPos;
-    public static int CantidadEnemigos;
+    public static int CantidadEnemigos; //objetivo de enemigos a eliminar dentro del juego
     #endregion
 
     #region voids basicos
@@ -29,12 +26,12 @@ public class ControlJuego : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (tiempoRestante == 0)
+        if (tiempoRestante == 0) //si se acaba el tiempo, gameover.
         {
             ComenzarJuego();
             screenL.ActiveScreen();
         }
-        if (Enemies.Kills == 8)
+        if (Enemies.Kills == 8) //si se eliminan 8 enemigos, gameover.
         {
             screenW.ActiveScreen();
         }
@@ -53,12 +50,12 @@ public class ControlJuego : MonoBehaviour
     {
         while (CantidadEnemigos < 8)
         {
-            xPos = Random.Range(-5, 5);
+            xPos = Random.Range(-5, 5); //randomiza posicion de enemigos
             zPos = Random.Range(-5, 5);
-            int enemyIndex = Random.Range(0, enemyPrefabs.Length);
+            int enemyIndex = Random.Range(0, enemyPrefabs.Length); //randomiza tipo de enemigo a spawnear
             Instantiate(enemyPrefabs[enemyIndex], new Vector3(xPos, 1, zPos), Quaternion.identity);
             yield return new WaitForSeconds(3f);
-            CantidadEnemigos += 1;
+            CantidadEnemigos += 1; //para que no sean más de 8 enemigos
         }
     }
     public IEnumerator Cronometro(float valorCronometro = 30)
