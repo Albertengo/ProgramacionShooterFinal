@@ -9,9 +9,10 @@ namespace interfaz
 {
     public class Botones : MonoBehaviour
     {
+        //lógica para los botones usados dentro del juego
         public void Restart()
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("Game");
             Enemies.Kills = 0;
             ControlJuego.CantidadEnemigos = 0;
             Time.timeScale = 1f;
@@ -22,7 +23,7 @@ namespace interfaz
         }
         public void PlayButton()
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("Game");
             Enemies.Kills = 0;
             ControlJuego.CantidadEnemigos = 0;
             Time.timeScale = 1f;

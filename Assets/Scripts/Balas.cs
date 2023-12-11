@@ -7,10 +7,10 @@ namespace disparos
 {
     public class Balas : MonoBehaviour
     {
+        //este script sirve para manejar la velocidad del disparo y su autodestrucción
         #region variables
         public float velocidad = 1f;
         public Rigidbody2D rbBala;
-        public GameObject HitEffect; //para la animacion desp
         public float tiempo = 3; //el alcance que va a tener la bala antes de desaparecer
         #endregion
 
@@ -24,11 +24,14 @@ namespace disparos
         #endregion
 
         #region code
-        private void OnCollisionEnter2D(Collision2D hitInfo) //antes era OnTriggerEnter2D(Collider2D hitInfo)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            //Instantiate(hitEffect, transform.position, Quaternion.Identity);
-            Destroy(gameObject); //(gameObject, tiempo); esto funcionaba pero traspasaba los enemigos, queria cambiar eso
+            
+            if (collision.gameObject.tag == "Enemy1" || collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Enemy3")
+            {
+                Destroy(gameObject);
+            }
+            #endregion
         }
-        #endregion
     }
 }

@@ -9,14 +9,10 @@ namespace interfaz
     public class ContadorKills : MonoBehaviour
     {
         public Text Contador;
-        void Start()
-        {
-           // Contador = GetComponent<Text>();
-        }
-
-        // Update is called once per frame
+        public Text Tiempo;
         void Update()
         {
+            Tiempo.text = ControlJuego.tiempoRestante + "s restantes.";
             Contador.text = Enemies.Kills + "/8 asesinatos";
         }
     }

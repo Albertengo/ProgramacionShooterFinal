@@ -2,7 +2,6 @@ using disparos;
 using Jugador;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace BotsEnemigos
@@ -15,8 +14,10 @@ namespace BotsEnemigos
         public float dañoInflingido;
         [SerializeField] private float velocidad;
         [SerializeField] private float SaludMax;
-        public float saludEn;
+        public float saludEn; //Salud Enemigo
         [SerializeField] private float RangoAtaque;
+        public Animator animator;
+
 
         [Header("INTERACCION")]
         public VidaJugador VidaJugador;
@@ -45,6 +46,8 @@ namespace BotsEnemigos
             {
                 transform.position = Vector2.MoveTowards(transform.position, objetivo.position, velocidad * Time.deltaTime);
             }
+            Vector2 position = transform.position;
+            animator.SetFloat("Speed", position.sqrMagnitude);
         }
         public void recibirDaño()
         {
@@ -53,14 +56,17 @@ namespace BotsEnemigos
             {
                 Destroy(gameObject);
                 Kills++;
-                
-                Vector2 position = transform.position; //chequea la posicion
-                int dropsIndex = Random.Range(0, Drops.Length); //randomiza la loot
-                Instantiate(Drops[dropsIndex], position, Quaternion.identity); //instancia loot a recolectar
-                
-                Debug.Log("Enemigos eliminados: " + Kills);
+                Loot();
+                //Debug.Log("Enemigos eliminados: " + Kills);
             }
         }
+        public void Loot()
+        {
+            Vector2 position = transform.position; //chequea la posicion
+            int dropsIndex = Random.Range(0, Drops.Length); //randomiza la loot
+            Instantiate(Drops[dropsIndex], position, Quaternion.identity); //instancia loot a recolectar
+        }
+
         private void OnTriggerEnter2D(Collider2D collision) //para cuando es atacado por el jugador
         {
             if (collision.gameObject.CompareTag("Bala"))
@@ -68,23 +74,7 @@ namespace BotsEnemigos
                 recibirDaño();
             }
         }
-        private void OnCollisionEnter2D(Collision2D collision) //para atacar al jugador
-        {
-            //if (collision.gameObject.CompareTag("Player"))
-            //{
-            //    VidaJugador.Daño(dañoInflingido);
-            //    Debug.Log("Estoy dañando al jugador -" + dañoInflingido);
-            //}
-            if (collision.gameObject.CompareTag("Player"))
-            {
-                Debug.Log("Player Hit");
-
-                if (VidaJugador != null)
-                {
-                    VidaJugador.Daño(dañoInflingido);
-                }
-            }
-        }
+        
         #endregion
     }
 }

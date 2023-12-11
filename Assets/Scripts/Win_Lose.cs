@@ -6,6 +6,7 @@ namespace interfaz
 {
     public class Win_Lose : MonoBehaviour
     {
+        //este script maneja las pantallas de ganar/perder
         public GameObject musica;
         void Start()
         {
