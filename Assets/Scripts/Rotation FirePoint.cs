@@ -17,7 +17,7 @@ namespace disparos
         }
         void Update()
         {
-            Rotation(); //antes no estaba en una funcion aparte
+            Rotation();
         }
         #endregion
 

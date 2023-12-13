@@ -6499,7 +6499,7 @@ GameObject:
   m_Layer: 20
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -6574,7 +6574,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d340d2ccc9e884eaefae3f2349303b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 390828867}
   velocidad: 3
   velocidadBoost: 4
   animator: {fileID: 2114486985}
@@ -15255,7 +15254,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4403907920750200088, guid: 1a7800828c0f2d04b82fad9bc80abf37, type: 3}
       propertyPath: m_Value
-      value: 15
+      value: 14.85
       objectReference: {fileID: 0}
     - target: {fileID: 5843415207529106872, guid: 1a7800828c0f2d04b82fad9bc80abf37, type: 3}
       propertyPath: m_AnchorMax.x

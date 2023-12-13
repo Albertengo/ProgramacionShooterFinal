@@ -8,7 +8,6 @@ namespace Jugador
     {
         #region Variables
         //movimiento
-        public Rigidbody2D rb;
         public float velocidad;
         [SerializeField] public float velocidadBoost = 5;
         private bool booster = false;

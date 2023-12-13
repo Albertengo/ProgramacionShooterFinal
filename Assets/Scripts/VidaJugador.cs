@@ -10,7 +10,7 @@ namespace Jugador
     public class VidaJugador : MonoBehaviour
     {
         #region variables
-        public float SaludMax = 15;
+        public float SaludMax = 15; //variable fija
         public float Salud;
         public SliderHealth healthbar;
         [SerializeField] private float HPdropHealing; //lo que cure el objeto de curacion, valga la redundancia
@@ -22,7 +22,7 @@ namespace Jugador
         {
             Salud = SaludMax;
             healthbar.startHealthBar(Salud);
-            Debug.Log("Nivel de vida: " + Salud);
+            //Debug.Log("Nivel de vida: " + Salud);
         }
 
         #endregion

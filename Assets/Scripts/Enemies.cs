@@ -15,7 +15,7 @@ namespace BotsEnemigos
         [SerializeField] private float velocidad;
         [SerializeField] private float SaludMax;
         public float saludEn; //Salud Enemigo
-        [SerializeField] private float RangoAtaque;
+        [SerializeField] private float RangoAtaque; //rango en que los enemigos detecten al jugador
         public Animator animator;
 
 
@@ -42,10 +42,11 @@ namespace BotsEnemigos
         #region code
         private void Movimiento ()
         {
-            if (Vector2.Distance(transform.position, objetivo.position) < RangoAtaque)
+            if (Vector2.Distance(transform.position, objetivo.position) < RangoAtaque) //mientras jugador esté dentro de rango, perseguir
             {
                 transform.position = Vector2.MoveTowards(transform.position, objetivo.position, velocidad * Time.deltaTime);
             }
+            //animacion
             Vector2 position = transform.position;
             animator.SetFloat("Speed", position.sqrMagnitude);
         }
